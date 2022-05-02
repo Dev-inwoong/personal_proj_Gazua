@@ -40,13 +40,13 @@ class MainActivity : TabActivity() {
 
         var tabHost = this.tabHost
 
-        var tabExchange = tabHost.newTabSpec("Exchange").setIndicator("코인조회")
-        tabExchange.setContent(R.id.tabExchange)
-        tabHost.addTab(tabExchange)
+        var tabCryptoInfo = tabHost.newTabSpec("Exchange").setIndicator("코인조회")
+        tabCryptoInfo.setContent(R.id.tabCryptoInfo)
+        tabHost.addTab(tabCryptoInfo)
 
-        var tabCoinInfo = tabHost.newTabSpec("CoinInfo").setIndicator("관심코인")
-        tabCoinInfo.setContent(R.id.tabCoinInfo)
-        tabHost.addTab(tabCoinInfo)
+        var tabAvgUnitPriceCalc = tabHost.newTabSpec("CoinInfo").setIndicator("평단가계산")
+        tabAvgUnitPriceCalc.setContent(R.id.tabAvgUnitPriceCalc)
+        tabHost.addTab(tabAvgUnitPriceCalc)
 
         var tabTopTrade = tabHost.newTabSpec("TotalPrice").setIndicator("Top거래")
         tabTopTrade.setContent(R.id.tabTopTrade)
@@ -145,7 +145,6 @@ class MainActivity : TabActivity() {
                 Toast.makeText(applicationContext, "다른 화폐쌍을 골라주세요!!", Toast.LENGTH_SHORT).show()
             }
             else{
-                Toast.makeText(applicationContext, "반응이 없으면 다시 한 번 눌러보세요!", Toast.LENGTH_SHORT).show()
                 start(params)
             }
         }

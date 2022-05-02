@@ -13,9 +13,14 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
     <style name="TabWidgetTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name = "android:textColorPrimary">@color/white</item>
         <item name = "android:textColorSecondary">@color/white</item>
+    </style>
+
+    <style name="ThemeOverlay.AppTheme.TextInputEditText.Outlined" parent="">
+        <item name="colorControlActivated">@color/white</item>
     </style>
 
 </resources>

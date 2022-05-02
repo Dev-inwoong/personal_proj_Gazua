@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@android:id/tabhost"
+    tools:context=".MainActivity"
+    android:theme="@style/TabWidgetTheme"
+    android:background="#232427">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:tabStripEnabled="false"/>
+
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#232427">
+
+            <LinearLayout
+                android:id="@+id/tabExchange"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="15dp"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textinputlayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:hint="코인 이름"
+                            app:endIconMode="dropdown_menu"
+                            app:hintAnimationEnabled="true"
+                            app:hintEnabled="true">
+                            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                                android:id="@+id/text_item"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="#232427" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="15dp"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="1dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="화폐 쌍"
+                                    android:textColor="@color/white"
+                                    android:textSize="20sp" />
+
+                                <TextView
+                                    android:id="@+id/goodsView"
+                                    android:layout_width="80sp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:text="KRW"
+                                    android:textColor="@color/white"
+                                    android:textSize="20sp" />
+
+                                <ImageButton
+                                    android:id="@+id/goodsbtn"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:background="#232427"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/downarrow"
+                                    android:visibility="invisible" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true">
+
+                                <Button
+                                    android:id="@+id/inputbtn"
+                                    android:layout_width="70dp"
+                                    android:layout_height="50dp"
+                                    android:background="@drawable/buttonshape"
+                                    android:shadowColor="#A8A8A8"
+                                    android:shadowDx="0"
+                                    android:shadowDy="0"
+                                    android:shadowRadius="5"
+                                    android:text="go"
+                                    android:textColor="#FFFFFF" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="15dp"
+                        android:layout_marginTop="5dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="코인"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:layout_weight="4.6"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="거래금액"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:gravity="right"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.2"
+                            android:text="등락률"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:gravity="right"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="15dp"
+                        android:layout_marginTop="5dp">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:layout_weight="3">
+
+                            <ImageView
+                                android:id="@+id/coinIcon"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/ic_launcher_foreground"
+                                android:visibility="visible" />
+
+                            <TextView
+                                android:id="@+id/currencyPairView"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignTop="@+id/coinIcon"
+                                android:layout_toRightOf="@+id/coinIcon"
+                                android:text="PairView"
+                                android:textColor="@color/white"
+                                android:layout_marginStart="3dp"/>
+
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/currentPriceView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:text="currentPrice" />
+
+                            <TextView
+                                android:id="@+id/tradePrice24hView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/currentPriceView"
+                                android:gravity="right"
+                                android:text="tradePrice"
+                                android:textColor="@color/white" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/changeRateView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:text="changeRate" />
+
+                            <TextView
+                                android:id="@+id/changePriceView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/changeRateView"
+                                android:gravity="right"
+                                android:text="ChangePrice" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/tabCoinInfo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#232427"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#232427"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:background="#232427"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/coinTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:text="코인"
+                            android:textColor="@color/white"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/volumeTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="현재가"
+                            android:textColor="@color/white"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/fluctuationRateTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="등락률"
+                            android:textColor="@color/white"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="40sp"
+                        android:text="추후 개발됩니다..."
+                        android:textColor="@color/white"
+                        android:layout_gravity="center"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/tabTopTrade"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="40sp"
+                        android:text="추후 개발됩니다..."
+                        android:textColor="@color/white"
+                        android:layout_gravity="center"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tabTotalPrice"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="40sp"
+                        android:text="추후 개발됩니다..."
+                        android:textColor="@color/white"
+                        android:layout_gravity="center"/>
+                </LinearLayout>
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+</TabHost>

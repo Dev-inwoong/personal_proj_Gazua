@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/itemKRW"
+        android:title="KRW"/>
+    <item
+        android:id="@+id/itemUSDT"
+        android:title="USDT"/>
+    <item
+        android:id="@+id/itemBTC"
+        android:title="BTC"/>
+</menu>

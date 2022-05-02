@@ -15,7 +15,9 @@ import com.google.gson.JsonParser
 import kotlinx.coroutines.*
 import okhttp3.*
 import okio.ByteString
+import java.math.BigDecimal
 import java.text.DecimalFormat
+import kotlin.math.floor
 
 @Suppress("deprecation")
 class MainActivity : TabActivity() {
@@ -155,8 +157,6 @@ class MainActivity : TabActivity() {
         override fun onOpen(webSocket: WebSocket, response: Response) {
             super.onOpen(webSocket, response)
             webSocket.send(sendText)
-            Log.e("send", sendText)
-
         }
 
         override fun onMessage(webSocket: WebSocket, bytes: ByteString) {
@@ -171,13 +171,11 @@ class MainActivity : TabActivity() {
                 upbitTicker.code.contains("BTC-") -> upbitTicker.photo = upbitTicker.code.substring(4).lowercase()
                 upbitTicker.code.contains("USDT-") -> upbitTicker.photo = upbitTicker.code.substring(5).lowercase()
             }
-            Log.e("Set photo", upbitTicker.photo.toString())
 
             val drawableResourceId: Int = getResources().getIdentifier(
                 upbitTicker.photo, "drawable",
                 getPackageName()
             ) // 동적 이미지 경로 세팅
-            Log.e("imageResource", drawableResourceId.toString())
 
             val dec = DecimalFormat("#,###.#") // 가격 포맷
             val dec2 = DecimalFormat("#,###.##") // 등락률 포맷
@@ -186,49 +184,37 @@ class MainActivity : TabActivity() {
             runOnUiThread{
                 coinIcon.visibility = View.VISIBLE
                 coinIcon.setImageResource(drawableResourceId) //코인 이미지
-                Log.e("image set", "")
+
                 currencyPairView.text = upbitTicker.code // 화폐쌍
-                Log.e("code set", "")
+                currentPriceView.text = dec.format(upbitTicker.trade_price).toString() // 현재 가격
+                tradePrice24hView.text = dec3.format(doubleTypePriceAdjust(upbitTicker.acc_trade_price_24h)).toString() + "억" // 거래 대금
+                changeRateView.text = dec2.format(upbitTicker.signed_change_rate*100).toString() + "%" //등락률
+                changePriceView.text = dec.format(upbitTicker.change_price).toString() // 등락 금액
+
                 if(upbitTicker.change == "RISE"){ // 전일 대비 상승일때
-                    currentPriceView.text = dec.format(upbitTicker.trade_price).toString() // 현재 가격
                     currentPriceView.setTextColor(0xffde5151.toInt()) // 텍스트 색 빨강
-
-                    tradePrice24hView.text = dec3.format(upbitTicker.acc_trade_price_24h.toInt()).toString() + "억" // 거래 대금
-
-                    changeRateView.text = dec2.format(upbitTicker.signed_change_rate*100).toString() + "%" //등락률
                     changeRateView.setTextColor(0xffde5151.toInt()) // 텍스트 색 빨강
-
-                    changePriceView.text = dec.format(upbitTicker.change_price).toString() // 등락 금액
                     changePriceView.setTextColor(0xffde5151.toInt()) // 텍스트 색 빨강
                 }
                 else if(upbitTicker.change == "FALL"){ // 전일 대비 하락일때
-                    currentPriceView.text = dec.format(upbitTicker.trade_price).toString() // 현재 가격
                     currentPriceView.setTextColor(0xff50bcdf.toInt()) // 텍스트 색 파랑
-
-                    tradePrice24hView.text = dec3.format(upbitTicker.acc_trade_price_24h.toInt()).toString() + "억" // 거래 대금
-
-                    changeRateView.text = dec2.format(upbitTicker.signed_change_rate*100).toString() + "%" //등락률
                     changeRateView.setTextColor(0xff50bcdf.toInt()) // 텍스트 색 파랑
-
-                    changePriceView.text = dec.format(upbitTicker.change_price).toString() // 등락 금액
                     changePriceView.setTextColor(0xff50bcdf.toInt()) // 텍스트 색 파랑
                 }
                 else{ // 전일 대비 보합일때
-                    currentPriceView.text = dec.format(upbitTicker.trade_price).toString() // 현재 가격
                     currentPriceView.setTextColor(0xffffffff.toInt()) // 텍스트 색 파랑
-
-                    tradePrice24hView.text = dec3.format(upbitTicker.acc_trade_price_24h.toInt()).toString() + "억" // 거래 대금
                     currentPriceView.setTextColor(0xffffffff.toInt()) // 텍스트 색 파랑
-
-                    changeRateView.text = dec2.format(upbitTicker.signed_change_rate*100).toString() + "%" //등락률
-
-                    changePriceView.text = dec.format(upbitTicker.change_price).toString() // 등락 금액
                     currentPriceView.setTextColor(0xffffffff.toInt()) // 텍스트 색 파랑
                 }
-                Log.e("crypto info", "")
             }
             //webSocket.close(1000, null) // NORMAL_CLOSURE_STATUS: 1000, 없을 경우 끊임없이 서버와 통신
-            //Log.e("websocket Closed", "")
         }
     }
+}
+
+fun doubleTypePriceAdjust(doublePrice : Double) : Double{
+    var result = doublePrice.toBigDecimal() //지수표현 제거
+    result = result.setScale(1, BigDecimal.ROUND_HALF_DOWN) // 소수점 반올림
+    var result2 = result.toString().substring(0, result.toString().length-10) // 억 단위 제거
+    return result2.toDouble()
 }

@@ -182,9 +182,9 @@
                                 android:layout_width="100dp"
                                 android:layout_height="wrap_content"
                                 android:layout_alignTop="@+id/coinIcon"
-                                android:layout_marginStart="3dp"
+                                android:layout_marginStart="10dp"
                                 android:layout_toRightOf="@+id/coinIcon"
-                                android:text="코인 이름"
+                                android:text=""
                                 android:textColor="@color/white"
                                 android:textSize="18sp" />
                         </RelativeLayout>
@@ -200,7 +200,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentRight="true"
                                 android:gravity="right"
-                                android:text="현재 가격"
+                                android:text=""
                                 android:textColor="@color/white"
                                 android:textSize="18sp" />
 
@@ -209,11 +209,11 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/currentPriceView"
-                                android:gravity="right"
                                 android:layout_alignParentRight="true"
-                                android:text="거래 대금"
-                                android:textSize="15sp"
-                                android:textColor="@color/white" />
+                                android:gravity="right"
+                                android:text=""
+                                android:textColor="@color/white"
+                                android:textSize="15sp" />
                         </RelativeLayout>
 
                         <RelativeLayout
@@ -227,7 +227,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentRight="true"
                                 android:gravity="right"
-                                android:text="등락률"
+                                android:text=""
                                 android:textColor="@color/white"
                                 android:textSize="18sp" />
 
@@ -236,11 +236,11 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/changeRateView"
-                                android:gravity="right"
                                 android:layout_alignParentRight="true"
-                                android:text="등락금액"
-                                android:textSize="18sp"
-                                android:textColor="@color/white"/>
+                                android:gravity="right"
+                                android:text=""
+                                android:textColor="@color/white"
+                                android:textSize="18sp" />
                         </RelativeLayout>
 
                     </LinearLayout>

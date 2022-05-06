@@ -1,11 +1,14 @@
 package kr.ac.tuk.personalproject
 
 import android.app.TabActivity
+import android.content.Context
 import android.graphics.Color
 import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.lifecycle.MutableLiveData
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
@@ -34,6 +37,11 @@ class MainActivity : TabActivity() {
     lateinit var changeRateView : TextView
     lateinit var changePriceView : TextView
 
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        val imm: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+        return true
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -44,9 +52,9 @@ class MainActivity : TabActivity() {
         tabCryptoInfo.setContent(R.id.tabCryptoInfo)
         tabHost.addTab(tabCryptoInfo)
 
-        var tabAvgUnitPriceCalc = tabHost.newTabSpec("CoinInfo").setIndicator("평단가계산")
-        tabAvgUnitPriceCalc.setContent(R.id.tabAvgUnitPriceCalc)
-        tabHost.addTab(tabAvgUnitPriceCalc)
+        var tabCoinCalc = tabHost.newTabSpec("CoinInfo").setIndicator("평단가계산")
+        tabCoinCalc.setContent(R.id.tabCoinCalc)
+        tabHost.addTab(tabCoinCalc)
 
         var tabTopTrade = tabHost.newTabSpec("TotalPrice").setIndicator("Top거래")
         tabTopTrade.setContent(R.id.tabTopTrade)

@@ -12,5 +12,4 @@ data class MarketCode (
     var korean_name : String,
     @SerializedName("english_name")
     var english_name : String
-
     )

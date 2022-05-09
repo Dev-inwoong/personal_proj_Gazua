@@ -29,7 +29,6 @@ class MainActivity : TabActivity() {
     lateinit var textInputLayout: TextInputLayout
     lateinit var text_item : MaterialAutoCompleteTextView
     lateinit var inputbtn : Button
-
     lateinit var coinIcon : ImageView
     lateinit var currencyPairView : TextView
     lateinit var currentPriceView : TextView

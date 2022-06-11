@@ -2,16 +2,16 @@ package kr.ac.tuk.personalproject
 
 import android.app.TabActivity
 import android.content.Context
-import android.graphics.Color
-import android.opengl.Visibility
 import android.os.Bundle
+import android.text.Editable
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
-import androidx.lifecycle.MutableLiveData
+import androidx.core.text.isDigitsOnly
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
+import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.Gson
 import com.google.gson.JsonParser
@@ -20,7 +20,6 @@ import okhttp3.*
 import okio.ByteString
 import java.math.BigDecimal
 import java.text.DecimalFormat
-import kotlin.math.floor
 
 @Suppress("deprecation")
 class MainActivity : TabActivity() {
@@ -35,6 +34,24 @@ class MainActivity : TabActivity() {
     lateinit var tradePrice24hView : TextView
     lateinit var changeRateView : TextView
     lateinit var changePriceView : TextView
+
+    //평단가 계산기
+    lateinit var CalcOpenPrice1 : TextInputEditText
+    lateinit var CalcAmount1 : TextInputEditText
+    lateinit var amountpurchase1 : TextView
+    lateinit var CalcOpenPrice2 : TextInputEditText
+    lateinit var CalcAmount2 : TextInputEditText
+    lateinit var amountpurchase2 : TextView
+    lateinit var CalcOpenPrice3 : TextInputEditText
+    lateinit var CalcAmount3 : TextInputEditText
+    lateinit var amountpurchase3 : TextView
+    lateinit var CalcOpenPrice4 : TextInputEditText
+    lateinit var CalcAmount4 : TextInputEditText
+    lateinit var amountpurchase4 : TextView
+    lateinit var resultOpenPrice : TextView
+    lateinit var resultAmount : TextView
+    lateinit var resultAmountPurchase : TextView
+    lateinit var calcbtn : Button
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         val imm: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -155,6 +172,73 @@ class MainActivity : TabActivity() {
                 start(params)
             }
         }
+        //계산기
+        val decimalFormat = DecimalFormat("#,###")
+        fun calc_mul(editable: Editable, editable2: Editable) : String{
+            return (editable.toString().toDouble() * editable2.toString().toDouble()).toString()
+        }
+        fun calc_plus(editable: String, editable2: String) : String{
+            return (editable.toDouble() + editable2.toDouble()).toString()
+        }
+
+        CalcOpenPrice1 = findViewById(R.id.CalcOpenPrice1)
+        CalcAmount1 = findViewById(R.id.CalcAmount1)
+        amountpurchase1 = findViewById(R.id.amountpurchase1)
+
+
+        CalcOpenPrice2 = findViewById(R.id.CalcOpenPrice2)
+        CalcAmount2 = findViewById(R.id.CalcAmount2)
+        amountpurchase2 = findViewById(R.id.amountpurchase2)
+
+        CalcOpenPrice3 = findViewById(R.id.CalcOpenPrice3)
+        CalcAmount3 = findViewById(R.id.CalcAmount3)
+        amountpurchase3 = findViewById(R.id.amountpurchase3)
+
+        CalcOpenPrice4 = findViewById(R.id.CalcOpenPrice4)
+        CalcAmount4 = findViewById(R.id.CalcAmount4)
+        amountpurchase4 = findViewById(R.id.amountpurchase4)
+
+        resultOpenPrice = findViewById(R.id.resultOpenPrice)
+        resultAmount = findViewById(R.id.resultAmount)
+        resultAmountPurchase = findViewById(R.id.resultAmountPurchase)
+        var openpricelist = arrayOf(CalcOpenPrice1, CalcOpenPrice2, CalcOpenPrice3, CalcOpenPrice4)
+        var amountlist = arrayOf(CalcAmount1, CalcAmount2, CalcAmount3, CalcAmount4)
+        var amountpurchaselist = arrayOf(amountpurchase1, amountpurchase2, amountpurchase3, amountpurchase4)
+        var resultlist = arrayOf(resultOpenPrice, resultAmount, resultAmountPurchase)
+        calcbtn = findViewById(R.id.calcbtn)
+        calcbtn.setOnClickListener {
+            for (i in resultlist.indices){
+                resultlist[i].text = "0"
+            }
+            for(i in openpricelist.indices){
+                if(!openpricelist[i].text.toString().isDigitsOnly() && !amountlist[i].toString().isDigitsOnly()){
+                    Toast.makeText(this, "숫자를 입력해주세요.", Toast.LENGTH_SHORT).show()
+                    openpricelist[i].text!!.clear()
+                    amountlist[i].text!!.clear()
+                    return@setOnClickListener
+                }else{
+                    continue
+                }
+            }
+            for(i in openpricelist.indices){
+                if(openpricelist[i].text.isNullOrEmpty() || amountlist[i].text.isNullOrEmpty()){
+                    continue
+                }else{
+                    for (i in resultlist.indices){
+                        resultlist[i].text = resultlist[i].text.toString().replace(",", "")
+                    }
+                    amountpurchaselist[i].text = calc_mul(openpricelist[i].text!!,amountlist[i].text!!)
+                    resultAmount.text = calc_plus(resultAmount.text.toString(), amountlist[i].text.toString())
+                    resultAmountPurchase.text = calc_plus(resultAmountPurchase.text.toString(), amountpurchaselist[i].text.toString())
+                    resultOpenPrice.text = (resultAmountPurchase.text.toString().toDouble() / resultAmount.text.toString().toDouble()).toString()
+                    for(i in resultlist.indices){
+                        resultlist[i].text = decimalFormat.format(resultlist[i].text.toString().toDouble())
+                    }
+                }
+            }
+        }
+
+
     }
     inner class mWebSocketListener(params: String): WebSocketListener() {
         lateinit var upbitTicker : Ticker
@@ -178,9 +262,9 @@ class MainActivity : TabActivity() {
                 upbitTicker.code.contains("USDT-") -> upbitTicker.photo = upbitTicker.code.substring(5).lowercase()
             }
 
-            val drawableResourceId: Int = getResources().getIdentifier(
+            val drawableResourceId: Int = resources.getIdentifier(
                 upbitTicker.photo, "drawable",
-                getPackageName()
+                packageName
             ) // 동적 이미지 경로 세팅
 
             val dec = DecimalFormat("#,###.#") // 가격 포맷

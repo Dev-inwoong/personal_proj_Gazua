@@ -268,10 +268,42 @@
                     android:background="#232427"
                     android:orientation="vertical"
                     android:layout_marginHorizontal="15dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_marginTop="15dp">
+                        <TextView
+                            android:layout_width="130dp"
+                            android:layout_height="wrap_content"
+                            android:text="단가"
+                            android:textSize="20sp"
+                            android:textColor="@color/white"
+                            android:layout_marginStart="25dp"/>
+                        <TextView
+                            android:layout_width="130dp"
+                            android:layout_height="wrap_content"
+                            android:text="수량"
+                            android:textSize="20sp"
+                            android:textColor="@color/white"/>
+                        <TextView
+                            android:layout_width="130dp"
+                            android:layout_height="wrap_content"
+                            android:text="매수액"
+                            android:textSize="20sp"
+                            android:textColor="@color/white"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:text="1"
+                            android:layout_marginRight="15dp"/>
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/CalcTextInputLayout"
                             app:endIconMode="clear_text"
@@ -281,10 +313,11 @@
                             app:hintTextColor="@color/white"
                             android:hint="매수 가격"
                             android:layout_marginVertical="8dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/CalcOpenPrice"
+                                android:id="@+id/CalcOpenPrice1"
                                 android:textColor="@color/white"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
@@ -299,39 +332,264 @@
                             app:hintTextColor="@color/white"
                             android:hint="주문 수량"
                             android:layout_marginVertical="8dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="15dp">
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/CalcAmount"
+                                android:id="@+id/CalcAmount1"
+                                android:textColor="@color/white"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <TextView
+                            android:id="@+id/amountpurchase1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:text="0"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:text="2"
+                            android:layout_marginRight="15dp"/>
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/CalcTextInputLayout"
+                            app:endIconMode="clear_text"
+                            app:endIconTint="@color/white"
+                            app:hintAnimationEnabled="true"
+                            app:hintEnabled="true"
+                            app:hintTextColor="@color/white"
+                            android:hint="매수 가격"
+                            android:layout_marginVertical="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/CalcOpenPrice2"
                                 android:textColor="@color/white"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
                         </com.google.android.material.textfield.TextInputLayout>
 
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/CalcTextInputLayout"
+                            app:endIconMode="clear_text"
+                            app:endIconTint="@color/white"
+                            app:hintAnimationEnabled="true"
+                            app:hintEnabled="true"
+                            app:hintTextColor="@color/white"
+                            android:hint="주문 수량"
+                            android:layout_marginVertical="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="15dp">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/CalcAmount2"
+                                android:textColor="@color/white"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <TextView
+                            android:id="@+id/amountpurchase2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:text="0"
+                            android:layout_weight="1"/>
                     </LinearLayout>
 
-                    <RelativeLayout
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:text="3"
+                            android:layout_marginRight="15dp"/>
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/CalcTextInputLayout"
+                            app:endIconMode="clear_text"
+                            app:endIconTint="@color/white"
+                            app:hintAnimationEnabled="true"
+                            app:hintEnabled="true"
+                            app:hintTextColor="@color/white"
+                            android:hint="매수 가격"
+                            android:layout_marginVertical="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/CalcOpenPrice3"
+                                android:textColor="@color/white"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/CalcTextInputLayout"
+                            app:endIconMode="clear_text"
+                            app:endIconTint="@color/white"
+                            app:hintAnimationEnabled="true"
+                            app:hintEnabled="true"
+                            app:hintTextColor="@color/white"
+                            android:hint="주문 수량"
+                            android:layout_marginVertical="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="15dp">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/CalcAmount3"
+                                android:textColor="@color/white"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <TextView
+                            android:id="@+id/amountpurchase3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:text="0"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:text="4"
+                            android:layout_marginRight="15dp"/>
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/CalcTextInputLayout"
+                            app:endIconMode="clear_text"
+                            app:endIconTint="@color/white"
+                            app:hintAnimationEnabled="true"
+                            app:hintEnabled="true"
+                            app:hintTextColor="@color/white"
+                            android:hint="매수 가격"
+                            android:layout_marginVertical="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/CalcOpenPrice4"
+                                android:textColor="@color/white"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/CalcTextInputLayout"
+                            app:endIconMode="clear_text"
+                            app:endIconTint="@color/white"
+                            app:hintAnimationEnabled="true"
+                            app:hintEnabled="true"
+                            app:hintTextColor="@color/white"
+                            android:hint="주문 수량"
+                            android:layout_marginVertical="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="15dp">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/CalcAmount4"
+                                android:textColor="@color/white"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <TextView
+                            android:id="@+id/amountpurchase4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:text="0"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-                        <TextView
-                            android:id="@+id/evenunit"
-                            android:layout_alignParentLeft="true"
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="50dp"
-                            android:text="평단가: "
-                            android:textColor="@color/white"
-                            android:textSize="30sp"/>
-                        <TextView
-                            android:id="@+id/resultCalcTextView"
-                            android:layout_toRightOf="@id/evenunit"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:text="평단: "
+                                android:textSize="15sp"/>
+                            <TextView
+                                android:id="@+id/resultOpenPrice"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textSize="15sp"
+                                android:textColor="@color/white"
+                                android:layout_marginStart="25dp"/>
+                        </LinearLayout>
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="50dp"
-                            android:text="test"
-                            android:textColor="@color/white"
-                            android:textSize="30sp"/>
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:text="총 수량: "
+                                android:textSize="15sp"/>
+                            <TextView
+                                android:id="@+id/resultAmount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textSize="15sp"
+                                android:textColor="@color/white"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:text="총 매수: "
+                                android:textSize="15sp"/>
+                            <TextView
+                                android:id="@+id/resultAmountPurchase"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textSize="15sp"
+                                android:textColor="@color/white"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:orientation="vertical">
                         <Button
-                            android:id="@+id/calcBtn"
-                            android:layout_alignParentRight="true"
+                            android:id="@+id/calcbtn"
                             android:layout_width="70dp"
                             android:layout_height="50dp"
                             android:background="@drawable/buttonshape"
@@ -340,8 +598,15 @@
                             android:shadowDy="0"
                             android:shadowRadius="5"
                             android:text="go"
-                            android:textColor="#FFFFFF"/>
-                    </RelativeLayout>
+                            android:textColor="#FFFFFF"
+                            android:layout_marginStart="280dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:text="평단가?\n총매입금액을 총주식수로 나눈 한 주당의 매입 가격입니다. 주가 하락 시 주식을 매수해 평균단가를 낮추는 경우를 물타기라하며, 주가 상승 시 주식을 매수해 평균단가를 높이더라도 주식수를 늘리는 경우 불타기라 합니다."/>
+                    </LinearLayout>
+
 
                 </LinearLayout>
 
